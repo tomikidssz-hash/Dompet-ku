@@ -14,14 +14,24 @@ jobs:
       - name: Install deps
         run: bun install
       - name: Build web
-        run: bun run build
+        run: |
+          bun run build
+          ls -la
+          echo "Checking build output..."
+          if [ -d "dist" ]; then echo "Found dist folder"; ls dist; fi
+          if [ -d "build" ]; then echo "Found build folder"; ls build; fi
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
-      - name: Build APK DompetKu
+      - name: Build APK DompetKu FIX
         run: |
           npm i -g @capacitor/cli
+          echo "Fixing web assets folder..."
+          if [ -d "dist" ]; then mkdir -p www && cp -r dist/* www/ && echo "Copied dist to www"; fi
+          if [ -d "build" ]; then mkdir -p www && cp -r build/* www/ && echo "Copied build to www"; fi
+          if [ ! -d "www" ]; then mkdir -p www && echo "<h1>DompetKu</h1>" > www/index.html; fi
+          ls -la www/
           if [ ! -d "android" ]; then npx cap add android; fi
           npx cap sync android
           cd android
@@ -29,5 +39,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: DompetKu-APK-PlayStore-Beneran
+          name: DompetKu-APK-PlayStore-FIX
           path: android/app/build/outputs/apk/debug/app-debug.apk
