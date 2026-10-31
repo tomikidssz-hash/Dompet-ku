@@ -25,12 +25,10 @@ jobs:
           java-version: '21'
       - name: Build APK DompetKu FINAL
         run: |
-          echo "Hapus android lama yang rusak..."
           rm -rf android
-          echo "Bikin android baru yang ada gradlew nya..."
+          npx cap init DompetKu com.dompetku.app --web-dir=www
           npx cap add android
           npx cap sync android
-          ls -la android/
           chmod +x android/gradlew
           cd android
           ./gradlew assembleDebug
