@@ -1,0 +1,6 @@
+{
+  "name": "DompetKu - Aplikasi Keuangan Android",
+  "description": "Aplikasi pencatat keuangan dan manajemen anggaran DompetKu dengan Material 3 Jetpack Compose, pelacakan saldo otomatis, riwayat transaksi, dan laporan grafis bulanan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
