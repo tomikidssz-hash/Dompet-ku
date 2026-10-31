@@ -19,8 +19,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - uses: android-actions/setup-android@v3
-      - name: Build APK
+      - name: Build APK DompetKu
         run: |
           npm i -g @capacitor/cli
           if [ ! -d "android" ]; then npx cap add android; fi
@@ -30,5 +29,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: DompetKu-APK
+          name: DompetKu-APK-PlayStore-Beneran
           path: android/app/build/outputs/apk/debug/app-debug.apk
