@@ -25,9 +25,11 @@ jobs:
           java-version: '21'
       - name: Build APK DompetKu FINAL
         run: |
-          if [ ! -d "android" ]; then npx cap add android; fi
+          echo "Hapus android lama yang rusak..."
+          rm -rf android
+          echo "Bikin android baru yang ada gradlew nya..."
+          npx cap add android
           npx cap sync android
-          ls -la
           ls -la android/
           chmod +x android/gradlew
           cd android
